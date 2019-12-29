@@ -1,0 +1,2 @@
+This image serves as the `official Fedora image` for the [Fedora Distribution](https://getfedora.org/).
+This image is a relatively small footprint in comparison to a standard Fedora installation. This image is generated in the [Fedora Build System](http://koji.fedoraproject.org/koji/) and is built from [this kickstart file](https://pagure.io/fedora-kickstarts/blob/master/f/fedora-container-base.ks).

@@ -1,0 +1,11 @@
+The Nuxeo Platform is a highly customizable and extensible content management platform for building business applications.
+You can find additional informations on how to use this image in [Nuxeo documentation](https://doc.nuxeo.com/nxdoc/setting-up-your-nuxeo-environment/)
+This variables allows to add additional [Nuxeo configuration templates](https://doc.nuxeo.com/x/0AB9) in the `nuxeo.templates` configuration variable.
+If you would like to do additional setup in an image derived from this one, you can add a `/docker-entrypoint-initnuxeo.d/nuxeo.conf` file that will be appended to the end of the regular `nuxeo.conf` file.
+If you need a root account to run some installation steps in your `Dockerfile`, then you need to put those steps between two `USER` command as the image is run with the user `1000` (nuxeo). For instance:
+You can add your own shell scripts in a special `/docker-entrypoint-initnuxeo.d` directory. When ending in `.sh`, they will be run on default entrypoint startup.
+As it contains some non-free Codecs, we dont't ship a binary version of `ffmpeg` as part of this image. However, you can simply add the compilation in a derived images by adding these lines to your Dockerfile.
+Using Oracle JVM
+For the same reasons as `ffmpeg` we don't ship the Oracle JVM and rely by default on OpenJDK. If you want to use the Hotspot JVM you cans add the following lines in a derived Dockerfile
+Why is this images so big ?
+This image is big because it contains a lot of features. The nuxeo distribution itself is about 250M and in order to make cool things work like generating thumbnails or converting document to PDF we need some additional tools that are bundled in the image. We hope that in the future we will be able to delegate those conversions to external services that would be bundled as additional docker images.

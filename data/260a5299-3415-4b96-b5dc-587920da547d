@@ -1,0 +1,15 @@
+Zend Server is the integrated application platform for PHP mobile and web apps. Zend Server provides you with a highly available PHP production environment which includes, amongst other features, a highly reliable PHP stack, application monitoring, troubleshooting, and the all-new Z-Ray.
+Using Zend Server Z-Ray is akin to wearing X-Ray goggles, effortlessly giving developers deep insight into how their code is running as they are developing it – all without having to change any of their habits or workflow. With Z-Ray, developers can immediately understand the impact of their code changes, enabling them to both improve quality and solve issues long before their code reaches production. In addition to the obvious benefits of this ‘Left Shifting’ – better performance, fewer production issues and faster recovery times – using Z-Ray is also downright fun!
+Zend Server is the platform that enables Continuous Delivery, which provides consistency, automation and collaboration capabilities throughout the application delivery cycle. Patterns are available to integrate Zend Server with: Chef, Jenkins, Nagios, Vmware, Puppet.
+This is a cluster-enabled version of a Dockerized Zend Server container. With Zend Server on Docker, you'll get your PHP applications up and running on a highly available PHP production environment which includes, amongst other features, a highly reliable PHP stack, application monitoring, troubleshooting, and the new and innovative new technology - Z-Ray. Z-Ray gives developers unprecedented visibility into their code by tracking and displaying in a toolbar live and detailed info on how the various elements constructing their page are performing.
+For development purposes we provide you with a time limited trial license. For production use you must provide a valid Zend Server license using the instructions below in the Usage section.
+Zend Server is shared on [Docker-Hub] as **php-zendserver**.
+-	Zend Server 8
+-	Zend Server 9 (With PHP 7 GA)(Default version)
+-	Zend Server 2019 with multi PHP Version Support (7.1, 7.2 & 7.3)
+Once started, the container will output the information required to access the PHP application and the Zend Server UI, including an automatically generated admin password.
+To access the container **remotely**, port forwarding must be configured, either manually or using docker. For example, this command redirects port 80 to port 88, and port 10081 (Zend Server UI port) to port 10088:
+To start a Zend Server cluster you must provide a Mysql compatible database:
+Please note, when running multiple instances only one instance can be bound to a port. If you are running a cluster, either assign a port redirect to one node only, or assign a different port to each container.
+Application files can be automatically pulled from a Git repo by setting the **GIT_URL** env var to the repo's URL. Alternatively, if building an image from Dockerfile, place the app files in the \"app/\" folder.
+Each Zend Server Docker container requires 1GB of availible memory.

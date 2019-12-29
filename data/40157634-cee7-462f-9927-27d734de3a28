@@ -1,0 +1,10 @@
+# **DEPRECATION NOTICE**
+This image is officially deprecated in favor of [the `matomo` image](https://hub.docker.com/_/matomo/), and will receive no further updates after 2018-09-30 (Sep 30, 2018). Please adjust your usage accordingly.
+# Piwik
+Piwik is the leading open-source analytics platform that gives you more than just powerful analytics:
+-	Free open-source software
+-	100% data ownership
+-	User privacy protection
+-	User-centric insights
+-	Customisable and extensible
+This product includes GeoLite data created by MaxMind, available from [http://www.maxmind.com](http://www.maxmind.com).

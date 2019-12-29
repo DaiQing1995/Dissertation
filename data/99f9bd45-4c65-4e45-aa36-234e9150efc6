@@ -1,0 +1,5 @@
+These images were removed in favor of the [`opensuse/leap`](https://hub.docker.com/r/opensuse/leap) and [`opensuse/tumbleweed`](https://hub.docker.com/r/opensuse/tumbleweed) images provided and maintained by the [openSUSE Project](https://www.opensuse.org/) release team.
+An archive for images of unsupported versions can be found at [`opensuse/archive`](https://hub.docker.com/r/opensuse/archive).
+This project contains the stable releases of the openSUSE distribution.
+Each image is tagged using both the release number (eg *\"13.1\"*) and the code name (eg *\"Bottle\"*). The latest stable release is always available using the \"*latest*\" tag.
+These images are generated using [KIWI](https://github.com/openSUSE/kiwi). Their source file can be found on [this repository](https://github.com/openSUSE/docker-containers).

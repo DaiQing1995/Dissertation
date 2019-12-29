@@ -1,0 +1,12 @@
+TeamSpeak offers the ideal voice communication for online gaming, education and training, internal business communication, and staying in touch with friends and family. Our primary focus is delivering a solution that is easy to use, with high security standards, excellent voice quality, and low system and bandwidth usage.
+Run `docker stack deploy -c stack.yml teamspeak` (or `docker-compose -f stack.yml up`), wait for it to initialize completely, and visit `swarm-ip:9987`, `localhost:9987`, or `host-ip:9987` (as appropriate) with a TeamSpeak client.
+Sets the path where the TeamSpeak server is looking for the `licensekey.dat`. This variable is the path to the directory where the `licensekey.dat` is supposed to be located. Defaults to /var/ts3server/.
+This variable controls what kind of database the TeamSpeak server is using.
+The content of the this variable is send as `parameter` to the db plugin.
+This variable controls where the TeamSpeak server looks for sql files. Defaults to /opt/ts3server/sql/.
+This variable is the path to the sql scripts used to initialize the database. The path is relative to `TS3SERVER_DB_SQLPATH`
+This variable controls how many concurrent connections to the database are being used. Must be at least 2 and at most 100. Defaults to 10.
+This variable is the amount of days that the TeamSpeak server will keep unused user identities. Users that have been added to a group will not be pruned, but guests will be.
+This variable controls where the whitelist is found. The file contains a list of IP addresses which are exempt from the flood protection system. Warning: Do not add any IP addresses that you don't trust, as it will allow them to flood the server.
+This variable controls where the blacklist is found. The file contains a list of IP addresses that, no matter what, can't connect to the server query interface, even after a server restart.
+This variable controls the folder where the server stores its log files. Defaults to /var/ts3server/logs/.

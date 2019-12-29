@@ -1,0 +1,5 @@
+Odoo, formerly known as OpenERP, is a suite of open-source business apps written in Python and released under the AGPL license. This suite of applications covers all business needs, from Website/Ecommerce down to manufacturing, inventory and accounting, all seamlessly integrated. It is the first time ever a software editor managed to reach such a functional coverage. Odoo is the most installed business software in the world. Odoo is used by 2.000.000 users worldwide ranging from very small companies (1 user) to very large ones (300 000 users).
+This image requires a running PostgreSQL server.
+The alias of the container running Postgres must be db for Odoo to be able to connect to the Postgres server.
+When a PostgreSQL server is restarted, the Odoo instances linked to that server must be restarted as well because the server address has changed and the link is thus broken.
+Restarting a PostgreSQL server does not affect the created databases.

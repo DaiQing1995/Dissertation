@@ -1,0 +1,9 @@
+Express Gateway is an API Gateway that sits at the heart of any microservices architecture, regardless of what language or platform you're using. Express Gateway secures your microservices and exposes them through APIs using Node.js, ExpressJS and Express middleware. Developing microservices, orchestrating and managing them now can be done insanely fast all on one seamless platform without having to introduce additional infrastructure.
+Express-Gateway's documentation can be found at [https://express-gateway.io/docs](https://express-gateway.io/docs).
+-	Built Entirely on Express and Express Middleware
+-	Dynamic Centralized Config
+-	API Consumer and Credentials Management
+-	Plugins and Plugin Framework
+-	Distributed Data Store
+-	CLI
+-	Admin API

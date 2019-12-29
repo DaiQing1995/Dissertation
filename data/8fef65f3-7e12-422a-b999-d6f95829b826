@@ -1,0 +1,5 @@
+Rapidoid is an extremely fast HTTP server and modern Java web framework / application container, with a strong focus on high productivity and high performance.
+Rapidoid can be used in different ways:
+as a web tool, to quickly prototype RESTful web services from the command line
+as a HTTP server, to serve static resources
+as a Java web application framework/container, to deploy a web application JAR

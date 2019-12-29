@@ -1,0 +1,13 @@
+Apache Flink is an open source stream processing framework with powerful stream- and batch-processing capabilities.
+Learn more about Flink at [https://flink.apache.org/](https://flink.apache.org/)
+Starting with Flink 1.5, images without \"hadoop\" in the tag are the \"Hadoop-free\" variant of Flink. If you require Hadoop support (such as its HDFS filesystem implementation), you should reference an image whose tag includes the Hadoop version you need.
+You can also run a TaskManager (worker). Notice that workers need to register with the JobManager directly or via ZooKeeper so the master starts to send them tasks to execute.
+and just run `docker-compose up`.
+Scale the cluster up or down to *N* TaskManagers:
+These are the default ports used by the Flink image:
+-	The Web Client is on port `8081`
+-	JobManager RPC port `6123`
+-	TaskManagers RPC port `6122`
+-	TaskManagers Data port `6121`
+This repository is available on [github.com/docker-flink/docker-flink](https://github.com/docker-flink/docker-flink), and the official build is on the [Docker Hub](https://hub.docker.com/_/flink/).
+This repository is maintained by members of the Apache Flink community.

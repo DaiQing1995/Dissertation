@@ -1,0 +1,39 @@
+InfluxDB is a time series database built from the ground up to handle high write and query loads. InfluxDB is meant to be used as a backing store for any use case involving large amounts of timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and real-time analytics.
+The InfluxDB image exposes a shared volume under `/var/lib/influxdb`, so you can mount a host directory to that point to access persisted container data. A typical invocation of the container might be:
+The HTTP API port will be automatically exposed when using `docker run -P`.
+The administrator interface is not automatically exposed when using `docker run -P` and is disabled by default. The adminstrator interface requires that the web browser have access to InfluxDB on the same port in the container as from the web browser. Since `-P` exposes the HTTP port to the host on a random port, the administrator interface is not compatible with this setting.
+The administrator interface is deprecated as of 1.1.0 and will be removed in 1.3.0.
+Find more about API Endpoints & Ports [here](https://docs.influxdata.com/influxdb/latest/concepts/api/).
+InfluxDB can be either configured from a config file or using environment variables. To mount a configuration file and use it with the server, you can use this command:
+Modify the default configuration, which will now be available under `$PWD`. Then start the InfluxDB container.
+Modify `$PWD` to the directory where you want to store the configuration file.
+For environment variables, the format is `INFLUXDB_$SECTION_$NAME`. All dashes (`-`) are replaced with underscores (`_`). If the variable isn't in a section, then omit that part.
+InfluxDB supports the Graphite line protocol, but the service and ports are not exposed by default. To run InfluxDB with Graphite support enabled, you can either use a configuration file or set the appropriate environment variables. Run InfluxDB with the default Graphite configuration:
+The administrator interface is deprecated as of 1.1.0 and will be removed in 1.3.0. It is disabled by default. If needed, it can still be enabled by setting an environment variable like below:
+To use the administrator interface, both the HTTP API and the administrator interface API's must be forwarded to the same port.
+Start the container:
+Run the influx client in this container:
+Or run the influx client in a separate container:
+The InfluxDB image contains some extra functionality for initializing a database. These options are not suggested for production, but are quite useful when running standalone instances for testing.
+The database initialization script will only be called when running `influxd`. It will not be executed when running any other program.
+The InfluxDB image uses several environment variables to automatically configure certain parts of the server. They may significantly aid you in using this image.
+Automatically initializes a database with the name of this environment variable.
+Enables authentication. Either this must be set or `auth-enabled = true` must be set within the configuration file for any authentication related options below to work.
+The name of the admin user to be created. If this is unset, no admin user is created.
+The password for the admin user configured with `INFLUXDB_ADMIN_USER`. If this is unset, a random password is generated and printed to standard out.
+The name of a user to be created with no privileges. If `INFLUXDB_DB` is set, this user will be granted read and write permissions for that database.
+The password for the user configured with `INFLUXDB_USER`. If this is unset, a random password is generated and printed to standard out.
+The name of a user to be created with read privileges on `INFLUXDB_DB`. If `INFLUXDB_DB` is not set, this user will have no granted permissions.
+The password for the user configured with `INFLUXDB_READ_USER`. If this is unset, a random password is generated and printed to standard out.
+The name of a user to be created with write privileges on `INFLUXDB_DB`. If `INFLUXDB_DB` is not set, this user will have no granted permissions.
+The password for the user configured with `INFLUXDB_WRITE_USER`. If this is unset, a random password is generated and printed to standard out.
+If the Docker image finds any files with the extensions `.sh` or `.iql` inside of the `/docker-entrypoint-initdb.d` folder, it will execute them. The order they are executed in is determined by the shell. This is usually alphabetical order.
+To manually initialize the database and exit, the `/init-influxdb.sh` script can be used directly. It takes the same parameters as the `influxd run` command. As an example:
+The above would create the database `db0`, create an admin user with the password `supersecretpassword`, then create the `telegraf` user with your telegraf's secret password. It would then exit and leave behind any files it created in the volume that you mounted.
+When setting the hostname, you can use `-h <hostname>` or you can directly set the environment variable using `-e INFLUXDB_HOSTNAME=<hostname>`.
+Or you can just start a single meta node. If you setup a single meta node, you do not need to use `influxd-ctl add-meta`.
+See the [influxdb](https://hub.docker.com/_/influxdb/) image documentation for more details on how to use the data node images.
+InfluxDB Meta can be either configured from a config file or using environment variables. To mount a configuration file and use it with the server, you can use this command:
+Generate the default configuration file:
+Modify the default configuration, which will now be available under `$PWD`. Then start the InfluxDB Meta container.
+Modify `$PWD` to the directory where you want to store the configuration file.

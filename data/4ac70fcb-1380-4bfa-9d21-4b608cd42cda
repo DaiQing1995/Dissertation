@@ -1,0 +1,2 @@
+The images in this repository contain WebSphere Liberty application server and the IBM Java Runtime Environment. For more information please see our [official repository](https://github.com/WASdev/ci.docker).
+If you're looking for UBI-based images, please see [this repo](https://hub.docker.com/r/ibmcom/websphere-liberty/).

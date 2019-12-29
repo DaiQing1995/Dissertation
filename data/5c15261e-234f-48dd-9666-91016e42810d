@@ -1,0 +1,5 @@
+[Silverpeas](https://www.silverpeas.org) is a Collaborative and Social-Networking Portal built to facilitate and to leverage the collaboration, the knowledge-sharing and the feedback of persons, teams and organizations.
+Accessible from a simple web browser or from a smartphone, Silverpeas is used every days by ourselves. With about 30 ready-to-use applications and with its conversional and relational functions, it makes possible for users to work together, share their knowledge and good practices, and in general to improve their reciprocal empathy, therefore their willingness to collaborate.
+Silverpeas is usually used as an intranet and extranet platform dedicated to collaboration and information sharing.
+The Silverpeas images support actually only the two first database systems; because of the non-free licensing issues with the Oracle JDBC drivers, Silverpeas cannot include these drivers by default and consequently it cannot use transparently an Oracle database system as a persistence backend.
+For the same reasons, the Docker images of Silverpeas aren't shipped with the Oracle JVM but with OpenJDK. Silverpeas uses the Wildfly application server as runtime.

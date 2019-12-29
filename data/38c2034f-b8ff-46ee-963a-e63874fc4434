@@ -1,0 +1,3 @@
+What is Fluentd?
+Fluentd is a streaming data collector for unified logging layer hosted by [CNCF](https://www.cncf.io/project-faq/fluentd/). Fluentd lets you unify the data collection and consumption for a better use and understanding of data.
+For more information, check [official site](https://www.fluentd.org/) and [documentation site](https://docs.fluentd.org/).

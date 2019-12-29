@@ -1,0 +1,2 @@
+Kapacitor is an open source data processing engine written in Go. It can process both stream and batch data.
+Kapacitor can be either configured from a config file or using environment variables. To mount a configuration file and use it with the server, you can use this command:

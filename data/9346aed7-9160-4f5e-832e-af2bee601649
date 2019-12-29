@@ -1,0 +1,5 @@
+# Rocket.Chat
+Rocket.Chat is a Web Chat Server, developed in JavaScript, using the Meteor fullstack framework.
+It is a great solution for communities and companies wanting to privately host their own chat service or for developers looking forward to build and evolve their own chat platforms.
+For full documentation on production deployment best practices, please visit https://rocket.chat/docs/installation/docker-containers/
+Need some help? Join our community forums https://forums.rocket.chat

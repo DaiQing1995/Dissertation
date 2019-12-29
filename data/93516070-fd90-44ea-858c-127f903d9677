@@ -1,0 +1,6 @@
+# **DEPRECATED**
+This image is officially deprecated in favor of [the `node` image](https://hub.docker.com/_/node/). Please adjust your usage accordingly!
+See [iojs.org](https://iojs.org/) for more information, specifically the following note:
+io.js is a JavaScript platform built on Chrome's V8 runtime. This project began as a fork of Joyent's Node.js™ and is compatible with the npm ecosystem.
+Why? io.js aims to provide faster and predictable release cycles. It currently merges in the latest language, API and performance improvements to V8 while also updating libuv and other base libraries.
+This project aims to continue development of io.js under an \"open governance model\" as opposed to corporate stewardship.
