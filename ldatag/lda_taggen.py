@@ -1,9 +1,23 @@
 import numpy as np
+import os
 import time
 import codecs
 import re
 
 class LdaTagGenerator:
+
+    RootDir = "D:\\TreatiseWP\\Dissertation\\data"
+
+    def readin_data(self):
+        punctuation_regex = '[#!@#$%&\\*()`\\[\\]{},\'\'\\.;"]+'
+        ret = []
+        for root, dirs, files in os.walk(LdaTagGenerator.RootDir):
+            for file in files:
+                filepath = os.path.join(root, file)
+                f = open(filepath,"r",encoding="utf-8")
+                x = f.read()
+                ret.append(re.sub(punctuation_regex, '', x.lower()))
+        return ret
 
     def __init__(self):
         self.alpha = 5
@@ -31,8 +45,10 @@ class LdaTagGenerator:
             topicword = []
             for j in ids:
                 topicword.insert(0, self.id2word[j])
-            topicwords.append(topicword[0: min(10, len(topicword))])
-        print(topicwords)
+            topicwords.append(topicword[0: min(15, len(topicword))])
+        print(self.nzw)
+        print(self.ndz)
+        return topicwords
 
     # 预处理(分词，去停用词，为每个word赋予一个编号，文档使用word编号的列表表示)
     def preprocessing(self):
@@ -42,9 +58,10 @@ class LdaTagGenerator:
         file.close()
 
         # 读数据集
-        file = codecs.open('dataset.txt', 'r', 'utf-8')
-        documents = [document.strip() for document in file]
-        file.close()
+        # file = codecs.open('dataset.txt', 'r', 'utf-8')
+        documents = self.readin_data()
+        # documents = [document.strip() for document in file]
+        # file.close()
 
         word2id = {}
         id2word = {}
@@ -115,4 +132,8 @@ class LdaTagGenerator:
                 n = n + 1
         return np.exp(ll / (-n))
 
-LdaTagGenerator().generate()
+lda = LdaTagGenerator()
+# lda.readin_data()
+topicword = lda.generate()
+for top in topicword:
+    print(top)
