@@ -4,11 +4,12 @@ from database.db_operation import dq_DBUtils
 
 def generate_cluster2db():
     hc = HierCluster()
-    print("result:")
     name, cluster, tags = hc.clustering_and_generate_tag()
     dbutil = dq_DBUtils()
+    print("hierarchial cluster finished: len(name):%d len(cluster):%d len(tags):%d" % (len(name), len(cluster), len(tags)))
     for tag in tags:
-        dbutil.insert_tags(name[tag[0]], tags, "hier_cluster")
+        if tags[tag] != None:
+            dbutil.insert_tags(name[tag], tags[tag], "hier_cluster")
 
 def generate_tfidf2db():
     """

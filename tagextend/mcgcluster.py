@@ -1,4 +1,5 @@
 import numpy as np
+import time
 from tagextend.mcg_request import MCGUtils
 
 """
@@ -13,6 +14,11 @@ class WordCluster:
         Tm = WordCluster(None, 0.0)
         Tm.sub_tree.append(self)
         Tm.sub_tree.append(another_tree)
+        for word_ele in self.word:
+            Tm.word.add(word_ele)
+        for word_ele in another_tree.word:
+            Tm.word.add(word_ele)
+        return Tm
 
     def absorb(self, another_tree):
         ret = WordCluster(None, 0.0)
@@ -38,10 +44,10 @@ class ClusterAlgorithm:
     PCE_matrix = None
     PEC_matrix = None
 
-    REQUEST_SUM = 200
+    REQUEST_SUM = 5
     Pi_m = 0.5
 
-    P_threshold = 0.0
+    P_threshold = 0.00001
 
     def __init__(self, words):
         # basic tags
@@ -56,15 +62,19 @@ class ClusterAlgorithm:
         # request send
         for word in self.words:
             word2concept[word] = set()
+            print("current word(%s)'s pce_items request sent" % word)
+            time.sleep(1.2)
             pce_items = mcgutils.getPCEScore(word, ClusterAlgorithm.REQUEST_SUM).items()
-            print("pce_items")
-            print(pce_items)
+            print("current word(%s)'s pce_items got" % word)
+            # print(pce_items)
             for item in pce_items:
                 pce_raw_possibility[item[0]] = item[1]
                 word2concept[word].add(item[0])
+            print("current word(%s)'s pec_items request sent" % word)
+            time.sleep(1.2)
             pec_items = mcgutils.getPECScore(word, ClusterAlgorithm.REQUEST_SUM).items()
-            print("pec_items")
-            print(pec_items)
+            print("current word(%s)'s pec_items got" % word)
+            # print(pec_items)
             for item in pec_items:
                 pec_raw_possibility[item[0]] = item[1]
                 word2concept[word].add(item[0])
@@ -165,6 +175,7 @@ class ClusterAlgorithm:
                 for j in range(len(clusters)):
                     if i == j:
                         continue
+                    # print("%d cluster compare with %d cluster" % (i, j))
                     # 1: join 21: i absorb j 22: j absorb i 3: collapse
                     l1, newtags = self.__calculate_ltm(clusters[i], clusters[j], 1)
                     if l1 > max:
@@ -184,6 +195,7 @@ class ClusterAlgorithm:
                 print("words:")
                 print(self.getword(Tm))
 
-words = ["amazon", "apple", "technology"]
+# words = ["edition","thingsboard","content","framework","ui","lightweight","written","component","static","expressjs","professional"]
+words = ["content","framework","ui","lightweight","written","expressjs"]
 ca = ClusterAlgorithm(words)
 ca.clustering()
