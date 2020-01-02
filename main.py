@@ -1,8 +1,25 @@
+from operator import itemgetter
 from tfidftag.tfidf_taggen import BasicTagGenerator
 from cluster.hierarchical_cluster import HierCluster
+from tagextend.mcgcluster import ClusterAlgorithm
 from database.db_operation import dq_DBUtils
 
+def generate_mcg_cluster2db():
+    """
+    MCG and BRT based tag generator
+    :return:
+    """
+    words = ["apple", "amazon"]
+    ca = ClusterAlgorithm(words)
+    output_concepts = ca.clustering()
+    concepts = sorted(output_concepts.items(), key=itemgetter(1), reverse=False)
+    print(concepts)
+
 def generate_cluster2db():
+    """
+    hierarchical clustering process
+    :return:
+    """
     hc = HierCluster()
     name, cluster, tags = hc.clustering_and_generate_tag()
     dbutil = dq_DBUtils()
@@ -27,4 +44,3 @@ def generate_tfidf2db():
         dbutil.insert_tags(doc[i].name, doc[i].basic_tag, "tfidf")
         #print(doc[i].name, doc[i].basic_tag)
 
-# generate_cluster2db()

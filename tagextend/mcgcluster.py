@@ -11,20 +11,16 @@ class WordCluster:
         return 0.0
 
     def join(self, another_tree):
-        Tm = WordCluster(None, 0.0)
+        Tm = WordCluster(None, None)
         Tm.sub_tree.append(self)
         Tm.sub_tree.append(another_tree)
-        for word_ele in self.word:
-            Tm.word.add(word_ele)
-        for word_ele in another_tree.word:
-            Tm.word.add(word_ele)
         return Tm
 
     def absorb(self, another_tree):
-        ret = WordCluster(None, 0.0)
+        ret = WordCluster(None, None)
         ret.sub_tree.append(another_tree)
         ret.word = ret.word.union(self.word)
-        ret = WordCluster(None, 0.0)
+        ret = WordCluster(None, None)
 
     def collapse(self, another_tree):
         self.parent.sub_tree.append(self.sub_tree)
@@ -41,6 +37,7 @@ class of cluster algorithm
 """
 class ClusterAlgorithm:
 
+    # len(words) * (concepts) matrix
     PCE_matrix = None
     PEC_matrix = None
 
@@ -59,6 +56,8 @@ class ClusterAlgorithm:
         # word to concept set{word -> set}
         word2concept = {}
         pec_raw_possibility = {}
+        self.word2id = {}
+        self.concept2id = {}
         # request send
         for word in self.words:
             word2concept[word] = set()
@@ -111,6 +110,12 @@ class ClusterAlgorithm:
         #print(ClusterAlgorithm.PEC_matrix)
         print("P(E|C) matrix")
         #print(ClusterAlgorithm.PCE_matrix)
+        # fulfill words and conceptes id
+        for i in range(len(self.words)):
+            self.word2id[self.words[i]] = i
+        for i in range(len(self.concepts)):
+            self.concept2id[self.concepts[i]] = i
+
 
     # P(Dm|Tm) calculation
     def __calculate_dmtm(self, T):
@@ -123,10 +128,12 @@ class ClusterAlgorithm:
         return 1.0 / len(self.concepts)
 
     # traverse for all words from T
-    def getword(self, T):
+    def __getword(self, T):
         ret = []
+        for w in T.word:
+            ret.append(w)
         for tree in T.sub_tree:
-            subword = self.getword(tree)
+            subword = self.__getword(tree)
             for word in subword:
                 ret.append(word)
         return ret
@@ -156,13 +163,26 @@ class ClusterAlgorithm:
                 Tm.sub_tree.append(sub)
             for sub in tree2:
                 Tm.sub_tree.append(sub)
-        return self.__calculate_dmtm(Tm) / (self.__calculate_dmtm(tree1) * self.__calculate_dmtm(tree2)), self.getword(Tm)
+        return self.__calculate_dmtm(Tm) / (self.__calculate_dmtm(tree1) * self.__calculate_dmtm(tree2)), self.__getword(Tm)
+
+
+    def __select_concepts(self, words):
+        concepts_and_val = {}
+        for concept in self.concepts:
+            val = 1.0
+            for word in words:
+                if word == None:
+                    continue
+                val *= self.PEC_matrix[self.word2id[word]][self.concept2id[concept]]
+            concepts_and_val[concept] = val
+        return concepts_and_val
 
     def clustering(self):
         """
         main process of clustering
-        :return:
+        :return: generated concepts
         """
+        ret_concepts = []
         clusters = []
         for word in self.words:
             clusters.append(WordCluster(None, word))
@@ -177,6 +197,7 @@ class ClusterAlgorithm:
                         continue
                     # print("%d cluster compare with %d cluster" % (i, j))
                     # 1: join 21: i absorb j 22: j absorb i 3: collapse
+                    # l1: join L(Tm) value l21: A absorb B L(Tm)value
                     l1, newtags = self.__calculate_ltm(clusters[i], clusters[j], 1)
                     if l1 > max:
                         m = 1
@@ -187,15 +208,16 @@ class ClusterAlgorithm:
             if max < ClusterAlgorithm.P_threshold:
                 return
             Tm = clusters[maxi].join(clusters[maxj])
+            Tm_concepts = self.__select_concepts(self.__getword(Tm))
+            for tmp_concept in Tm_concepts.items():
+                ret_concepts.append(tmp_concept)
             rm1 = clusters[maxi]
             rm2 = clusters[maxj]
             clusters.remove(rm1)
             clusters.remove(rm2)
             if Tm != None:
                 print("words:")
-                print(self.getword(Tm))
+                print(self.__getword(Tm))
+        return ret_concepts
 
 # words = ["edition","thingsboard","content","framework","ui","lightweight","written","component","static","expressjs","professional"]
-words = ["content","framework","ui","lightweight","written","expressjs"]
-ca = ClusterAlgorithm(words)
-ca.clustering()
