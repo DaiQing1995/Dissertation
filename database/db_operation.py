@@ -13,12 +13,38 @@ class dq_DBUtils:
     def get_doc_name(self):
         return self.name
 
+    """
+    get all containers' name and short description
+    """
     def get_name_sdesp(self):
         # 使用cursor()方法获取操作游标
         cursor = self.db.cursor()
 
         # 使用execute方法执行SQL语句
         cursor.execute("SELECT `name`, short_desc FROM dockerhub_info.container_info")
+
+        # 使用 fetchone() 方法获取一条数据
+        data = cursor.fetchall()
+
+        sdesp = []
+
+        for row in data:
+            self.name.append(row[0])
+            sdesp.append(row[1])
+
+        return sdesp
+
+    """
+        get all containers' name and short description
+        """
+
+    def get_N_name_sdesp(self, N):
+        # 使用cursor()方法获取操作游标
+        cursor = self.db.cursor()
+        statement = "SELECT `name`, short_desc FROM dockerhub_info.container_info limit {N}"
+        statement = statement.format(N=N)
+        # 使用execute方法执行SQL语句
+        cursor.execute(statement)
 
         # 使用 fetchone() 方法获取一条数据
         data = cursor.fetchall()
@@ -46,7 +72,7 @@ class dq_DBUtils:
         # 使用cursor()方法获取操作游标
         tags = ""
         for tag in tagsraw:
-            tags += tag + ","
+            tags += "," + tag
         cursor = self.db.cursor()
         if not self.check_tagstable_exist(name):
             if type == "tfidf":
