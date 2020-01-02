@@ -19,11 +19,11 @@ class LdaTagGenerator:
                 ret.append(re.sub(punctuation_regex, '', x.lower()))
         return ret
 
-    def __init__(self):
-        self.alpha = 5
-        self.beta = 0.1
+    def __init__(self, topics_init):
+        self.alpha = 0.5
+        self.beta = 0.05
         self.Z = []
-        self.K = 10
+        self.K = topics_init
         self.docs, self.word2id, self.id2word = self.preprocessing()
         self.N = len(self.docs)
         self.M = len(self.word2id)
@@ -31,12 +31,13 @@ class LdaTagGenerator:
         self.nzw = np.zeros([self.K, self.M]) + self.beta
         self.nz = np.zeros([self.K]) + self.M * self.beta
         self.randomInitialize()
-        self.iterationNum = 50
+        self.iterationNum = 100
 
     def generate(self):
         for i in range(0, self.iterationNum):
             self.gibbsSampling()
-            print(time.strftime('%X'), "Iteration: ", i, " Completed", " Perplexity: ", self.perplexity())
+            # print(time.strftime('%X'), "Iteration: ", i, " Completed", " Perplexity: ", self.perplexity())
+            print("%d %lf" % (i, self.perplexity()))
 
         topicwords = []
         self.maxTopicWordsNum = 10
@@ -45,9 +46,9 @@ class LdaTagGenerator:
             topicword = []
             for j in ids:
                 topicword.insert(0, self.id2word[j])
-            topicwords.append(topicword[0: min(15, len(topicword))])
-        print(self.nzw)
-        print(self.ndz)
+            topicwords.append(topicword[0: min(10, len(topicword))])
+        # print(self.nzw)
+        # print(self.ndz)
         return topicwords
 
     # 预处理(分词，去停用词，为每个word赋予一个编号，文档使用word编号的列表表示)
@@ -132,7 +133,16 @@ class LdaTagGenerator:
                 n = n + 1
         return np.exp(ll / (-n))
 
-lda = LdaTagGenerator()
+
+# for i in range(20):
+#     print("k = %d" % (i + 4))
+#     lda = LdaTagGenerator(i + 4)
+#     # lda.readin_data()
+#     topicword = lda.generate()
+#     for top in topicword:
+#         print(top)
+
+lda = LdaTagGenerator(9)
 # lda.readin_data()
 topicword = lda.generate()
 for top in topicword:
