@@ -70,7 +70,9 @@ class WordNetUtils:
         # print(cls.get_synset_by_pos(word ,"NOUN"))
 
 wnu = WordNetUtils()
-print(wnu.get_synset("python"))
+synset = wnu.get_synset("python")
+for data in synset:
+    print(data._name)
 
 
 class WordNetTagGenerator:
