@@ -1,3 +1,4 @@
+from operator import itemgetter
 import numpy as np
 import time
 from tagextend.mcg_request import MCGUtils
@@ -29,7 +30,8 @@ class WordCluster:
     def __init__(self, parent, word):
         self.parent = parent
         self.word = set()
-        self.word.add(word)
+        if self.word is not None:
+            self.word.add(word)
         self.sub_tree = []
 
 """
@@ -59,6 +61,8 @@ class ClusterAlgorithm:
         self.word2id = {}
         self.concept2id = {}
         # request send
+        pce_min = 1.0
+        pec_min = 1.0
         for word in self.words:
             word2concept[word] = set()
             print("current word(%s)'s pce_items request sent" % word)
@@ -69,6 +73,8 @@ class ClusterAlgorithm:
             for item in pce_items:
                 pce_raw_possibility[item[0]] = item[1]
                 word2concept[word].add(item[0])
+                if item[1] < pce_min:
+                    pce_min = item[1]
             print("current word(%s)'s pec_items request sent" % word)
             time.sleep(1.2)
             pec_items = mcgutils.getPECScore(word, ClusterAlgorithm.REQUEST_SUM).items()
@@ -77,6 +83,8 @@ class ClusterAlgorithm:
             for item in pec_items:
                 pec_raw_possibility[item[0]] = item[1]
                 word2concept[word].add(item[0])
+                if item[1] < pec_min:
+                    pec_min = item[1]
 
         # retrieve all concepts
         self.concepts = []
@@ -96,12 +104,12 @@ class ClusterAlgorithm:
                 if self.concepts[j] in word2concept[cur_word] and self.concepts[j] in pce_raw_possibility:
                     ClusterAlgorithm.PCE_matrix[i][j] = pce_raw_possibility[self.concepts[j]]
                 else:
-                    ClusterAlgorithm.PCE_matrix[i][j] = 0.0
+                    ClusterAlgorithm.PCE_matrix[i][j] = pce_min
 
                 if self.concepts[j] in word2concept[cur_word] and self.concepts[j] in pec_raw_possibility:
                     ClusterAlgorithm.PEC_matrix[i][j] = pec_raw_possibility[self.concepts[j]]
                 else:
-                    ClusterAlgorithm.PEC_matrix[i][j] = 0.0
+                    ClusterAlgorithm.PEC_matrix[i][j] = pec_min
         print("words")
         print(self.words)
         print("concepts")
@@ -119,13 +127,24 @@ class ClusterAlgorithm:
 
     # P(Dm|Tm) calculation
     def __calculate_dmtm(self, T):
-        pdmtm = ClusterAlgorithm.Pi_m * self.__calculate_fdm()
+        pdmtm = ClusterAlgorithm.Pi_m * self.__calculate_fdm(self.__getword(T))
         for sub_tree in T.sub_tree:
             pdmtm +=  (1 - ClusterAlgorithm.Pi_m) * self.__calculate_dmtm(sub_tree)
         return pdmtm
 
-    def __calculate_fdm(self):
-        return 1.0 / len(self.concepts)
+    def __calculate_fdm(self, words):
+        """
+        :param words: words is Dm
+        :return: p(c) * p(Dm|c)
+        """
+        pdmc = 0.0
+        for concept in self.concepts:
+            for word in words:
+                if word is None or concept is None:
+                    continue
+                pdmc += ClusterAlgorithm.PCE_matrix[self.word2id[word]][self.concept2id[concept]]
+        pc = 1.0 / len(self.concepts)
+        return  pc * pdmc
 
     # traverse for all words from T
     def __getword(self, T):
@@ -141,23 +160,23 @@ class ClusterAlgorithm:
     # L(Tm) calculation
     def __calculate_ltm(self, tree1, tree2, operation):
         if operation == 1:      #join
-            Tm = WordCluster(None, 0.0)
+            Tm = WordCluster(None, None)
             Tm.sub_tree.append(tree1)
             Tm.sub_tree.append(tree2)
         elif operation == 2:    #cluster1 absorb cluster2
-            Tm = WordCluster(None, 0.0)
+            Tm = WordCluster(None, None)
             Tm.word = tree1.word.copy()
             for sub in tree1.sub_tree:
                 Tm.sub_tree.append(sub)
             Tm.sub_tree.append(tree2)
         elif operation == 3:    #cluster2 absorb cluster1
-            Tm = WordCluster(None, 0.0)
+            Tm = WordCluster(None, None)
             Tm.word = tree2.word.copy()
             for sub in tree2.sub_tree:
                 Tm.sub_tree.append(sub)
             Tm.sub_tree.append(tree1)
         elif operation == 4:    #collapse
-            Tm = WordCluster(None, 0.0)
+            Tm = WordCluster(None, None)
             Tm.word = tree1.word.union(tree2.word)
             for sub in tree1:
                 Tm.sub_tree.append(sub)
@@ -167,6 +186,9 @@ class ClusterAlgorithm:
 
 
     def __select_concepts(self, words):
+        """
+            calculate p(c|D): under the circumstance of words(D), the possibility of c
+        """
         concepts_and_val = {}
         for concept in self.concepts:
             val = 1.0
@@ -215,9 +237,25 @@ class ClusterAlgorithm:
             rm2 = clusters[maxj]
             clusters.remove(rm1)
             clusters.remove(rm2)
-            if Tm != None:
+            if Tm is not None:
                 print("words:")
                 print(self.__getword(Tm))
         return ret_concepts
 
 # words = ["edition","thingsboard","content","framework","ui","lightweight","written","component","static","expressjs","professional"]
+
+# words = ["mysql", "postgres"]
+words = ["nodejs","host","built","web","artifacts","entry","point","812"]
+ca = ClusterAlgorithm(words)
+output_concepts = ca.clustering()
+sorted_concepts = sorted(output_concepts, key=itemgetter(1), reverse=True)
+# for concept in sorted_concepts:
+# print(sorted_concepts)
+concepts = set()
+ret = []
+for d in sorted_concepts:
+    if d[0] in concepts:
+        continue
+    ret.append(d)
+    concepts.add(d[0])
+print(ret)

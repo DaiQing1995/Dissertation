@@ -44,3 +44,4 @@ def generate_tfidf2db():
         dbutil.insert_tags(doc[i].name, doc[i].basic_tag, "tfidf")
         #print(doc[i].name, doc[i].basic_tag)
 
+generate_mcg_cluster2db()
