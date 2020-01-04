@@ -1,10 +1,13 @@
-from nltk import word_tokenize
 from nltk.corpus import wordnet as wn
+from preprocessing.handledocument import DocumentHandling
 import gensim
 import numpy as np
 
 
 class WordNetUtils:
+    """
+    for word net api using
+    """
 
     @staticmethod
     def get_synset(word):
@@ -47,6 +50,11 @@ class WordNetUtils:
         return good.lemmas()[0].antonyms()
 
     @staticmethod
+    def get_synonym(word):
+        good = wn.synset(word)
+        return good.lemmas()
+
+    @staticmethod
     def get_similarity(word1, word2):
         """
         值得注意的是，名词和动词被组织成了完整的层次式分类体系，形容词和副词没有被组织成分类体系，所以不能用path_distance。
@@ -64,35 +72,83 @@ class WordNetUtils:
         return wn.synset(word).entailments()
 
     @classmethod
-    def test_all(cls, word):
-        print(cls.get_definition(word))
+    def get_hypernyms(cls, word):
+        return wn.synset(word).hypernyms()
+
+    @classmethod
+    def get_hyponyms(cls, word):
+        return wn.synset(word).hyponyms()
+
+    @classmethod
+    def get_lowest_hypernyms(cls):
+        return wn.lowest_common_hypernyms()  # 类似最小公倍数
+
+    @classmethod
+    def test_all(cls):
         # print(cls.get_entailments(word))
         # print(cls.get_synset_by_pos(word ,"NOUN"))
+        wnu = WordNetUtils()
+        synset_java = wnu.get_synset("java")
+        synset_computer = wnu.get_synset("computer")
+        for data in synset_java:
+            print("synset data name: %s" % data._name)
+            # python.n.01
+            print("synset data def: %s" % wnu.get_definition(data._name))
+            # (Greek mythology) dragon killed by Apollo at Delphi
+            print("synset data example: %s" % wnu.get_example_of_word(data._name))
+            # ['he ordered a cup of coffee']
+            print("synset words: %s" % wnu.get_words_of_same_synset(data._name))
+            #  ['coffee', 'java']
+            print("data entailments: %s" % wnu.get_entailments(data._name))
 
-wnu = WordNetUtils()
-synset = wnu.get_synset("python")
-for data in synset:
-    print(data._name)
+            for cp_data in synset_computer:
+                print("--------------------------------------------------")
+                print("%s: computer def: %s" % (cp_data._name, wnu.get_definition(cp_data._name)))
+                print("java hypernyms:%s" % wnu.get_hypernyms(data._name))
+                print("java hyponyms:%s" % wnu.get_hyponyms(data._name))
+                print("computer hypernyms:%s" % wnu.get_hypernyms(cp_data._name))
+                print("computer hyponyms:%s" % wnu.get_hyponyms(cp_data._name))
+                print("java and computer similarity: %lf" % wnu.get_similarity(data._name, cp_data._name))
+            print("\n\n")
 
 
 class WordNetTagGenerator:
 
+    def get_similarity(self, word1, word2):
+        if word1 not in self.model.vocab or word2 not in self.model.vocab:
+            return -1
+        vec = []
+        vec.append(self.model[word1])
+        vec.append(self.model[word2])
+        vec = np.asarray(vec)
+        return np.dot(vec[0], vec[1]) / np.sqrt(300)
+
+    def generate_tags(self, inputs):
+        dh = DocumentHandling()
+        words = dh.preprocess_text2list(inputs)
+        ret = []
+        wnu = WordNetUtils()
+        for word in words:
+            synset = wnu.get_synset(word)
+            print("\n\nword:%s" % word)
+            for data in synset:
+                print("%s: def: %s" % (data._name, wnu.get_definition(data._name)))
+                print("hypernyms:%s" % wnu.get_hypernyms(data._name))
+                print("hyponyms:%s" % wnu.get_hyponyms(data._name))
+                print("antonyms:")
+                print(wnu.get_antonyms(data._name))
+                print("synonyms:")
+                print(wnu.get_synonym(data._name))
+                print("%s and computer similarity: %lf" % ((data._lemmas[0])._name, self.get_similarity((data._lemmas[0])._name, "computer")))
+
+
     def __init__(self):
         self.model = gensim.models.KeyedVectors.load_word2vec_format("D:\\TreatiseWP\\GoogleNews-vectors-negative300.bin.gz", binary=True)
-        s = "Concurrent therapy with ORENCIA and TNF antagonists is not recommended"
-        token = word_tokenize(s)
-        print(token)
+        print("init finish")
+        # s = "Concurrent therapy with ORENCIA and TNF antagonists is not recommended"
+        # token = word_tokenize(s)
 
-        vec = []
-        for word in token:
-            if word in self.model.vocab:
-                vec.append(self.model[word])
-            else:
-                vec.append(np.zeros(self.model.vector_size))
-        vec = np.asarray(vec)
-        for i in vec:
-            print(np.dot(vec[3], i) / np.sqrt(300))  # 第三个词和其他词相互关系
-            print(np.dot(vec[5], i) / np.sqrt(300))
-            print(np.dot(vec[6], i) / np.sqrt(300))
 
-# WordNetTagGenerator()
+
+wntg = WordNetTagGenerator()
+wntg.generate_tags("postgresql, object-relational, database, reliability, data, integrity")
