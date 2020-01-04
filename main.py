@@ -3,6 +3,32 @@ from tfidftag.tfidf_taggen import BasicTagGenerator
 from cluster.hierarchical_cluster import HierCluster
 from tagextend.mcgcluster import ClusterAlgorithm
 from database.db_operation import dq_DBUtils
+from wordnet_extend.wordnet_taggen import WordNetTagGenerator
+from preprocessing.handledocument import DocumentHandling
+
+
+def generate_wordnet_tags2db():
+    dbutil = dq_DBUtils()
+    # wntg = WordNetTagGenerator()
+    names, tag_raw = dbutil.get_name_and_basictags()
+    for i in range(len(names)):
+        text = []
+        tags = tag_raw[i]
+        tag_list = DocumentHandling.preprocess_text2list(tags[0])
+        tag_list_2 = DocumentHandling.preprocess_text2list(tags[1])
+        for tag in tag_list_2:
+            tag_list.append(tag)
+        for tag in tag_list:
+            text.append(tag)
+        text_purified = []
+        for data in text:
+            if data not in text_purified:
+                text_purified.append(data)
+        print(names[i])
+        print(text_purified)
+        # data = wntg.generate_tags(text)
+        # dbutil.insert_tags(names[i], data, "wordnet_gen")
+
 
 def generate_mcg_cluster2db():
     """
@@ -44,4 +70,4 @@ def generate_tfidf2db():
         dbutil.insert_tags(doc[i].name, doc[i].basic_tag, "tfidf")
         #print(doc[i].name, doc[i].basic_tag)
 
-generate_mcg_cluster2db()
+generate_wordnet_tags2db()
