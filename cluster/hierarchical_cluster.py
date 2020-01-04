@@ -146,9 +146,9 @@ def cosine_similarity(value_a, value_b, k):
         return 0
     return inner_product / (norm_b * norm_a)
 
-hc = HierCluster()
-print("result:")
-name, data, tags = hc.clustering_and_generate_tag()
-print(name)
-print(data)
-print(tags)
+# hc = HierCluster()
+# print("result:")
+# name, data, tags = hc.clustering_and_generate_tag()
+# print(name)
+# print(data)
+# print(tags)
