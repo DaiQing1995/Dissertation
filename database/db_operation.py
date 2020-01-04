@@ -35,10 +35,33 @@ class dq_DBUtils:
         return sdesp
 
     """
-        get all containers' name and short description
-        """
+    get all containers' name and tf_idf_033 tags
+    """
+    def get_name_and_basictags(self):
+        # 使用cursor()方法获取操作游标
+        cursor = self.db.cursor()
+
+        # 使用execute方法执行SQL语句
+        cursor.execute("SELECT 	`name`, tf_idf_tags_033, hierarchical_cluster_tags FROM dockerhub_info.container_tags")
+
+        # 使用 fetchone() 方法获取一条数据
+        data = cursor.fetchall()
+
+        tags = []
+
+        for row in data:
+            tag = []
+            self.name.append(row[0])
+            tag.append(row[1])
+            tag.append(row[2])
+            tags.append(tag)
+
+        return self.name, tags
 
     def get_N_name_sdesp(self, N):
+        """
+        get N containers' name and short description
+        """
         # 使用cursor()方法获取操作游标
         cursor = self.db.cursor()
         statement = "SELECT `name`, short_desc FROM dockerhub_info.container_info limit {N}"
@@ -81,6 +104,9 @@ class dq_DBUtils:
             elif type == "hier_cluster":
                 statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`hierarchical_cluster_tags`) VALUES (\"{name}\", \"{tags}\")"
                 self.db.commit()
+            elif type == "wordnet_gen":
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`wordnet_extend_tags`) VALUES (\"{name}\", \"{tags}\")"
+                self.db.commit()
             else:
                 print("[sql error] no type named %s" % type)
                 return
@@ -92,6 +118,9 @@ class dq_DBUtils:
                 self.db.commit()
             elif type == "hier_cluster":
                 statement = "UPDATE `dockerhub_info`.`container_tags` SET `hierarchical_cluster_tags` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "wordnet_gen":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `wordnet_extend_tags` = \"{tags}\" WHERE `name` = \"{name}\""
                 self.db.commit()
             else:
                 print("[sql error] no type named %s" % type)
