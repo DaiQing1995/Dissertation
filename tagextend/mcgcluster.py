@@ -244,18 +244,20 @@ class ClusterAlgorithm:
 
 # words = ["edition","thingsboard","content","framework","ui","lightweight","written","component","static","expressjs","professional"]
 
-# words = ["mysql", "postgres"]
-words = ["nodejs","host","built","web","artifacts","entry","point","812"]
-ca = ClusterAlgorithm(words)
-output_concepts = ca.clustering()
-sorted_concepts = sorted(output_concepts, key=itemgetter(1), reverse=True)
-# for concept in sorted_concepts:
-# print(sorted_concepts)
-concepts = set()
-ret = []
-for d in sorted_concepts:
-    if d[0] in concepts:
-        continue
-    ret.append(d)
-    concepts.add(d[0])
-print(ret)
+
+def mcg_cluster_main():
+    # words = ["mysql", "postgres"]
+    words = ["nodejs","host","built","web","artifacts","entry","point","812"]
+    ca = ClusterAlgorithm(words)
+    output_concepts = ca.clustering()
+    sorted_concepts = sorted(output_concepts, key=itemgetter(1), reverse=True)
+    # for concept in sorted_concepts:
+    # print(sorted_concepts)
+    concepts = set()
+    ret = []
+    for d in sorted_concepts:
+        if d[0] in concepts:
+            continue
+        ret.append(d)
+        concepts.add(d[0])
+    print(ret)
