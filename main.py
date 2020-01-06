@@ -8,26 +8,34 @@ from preprocessing.handledocument import DocumentHandling
 
 
 def generate_wordnet_tags2db():
+    """
+    tag generator based on wordNet and Word2Vec
+    :return:
+    """
     dbutil = dq_DBUtils()
-    # wntg = WordNetTagGenerator()
+    wntg = WordNetTagGenerator()
     names, tag_raw = dbutil.get_name_and_basictags()
-    for i in range(len(names)):
-        text = []
-        tags = tag_raw[i]
-        tag_list = DocumentHandling.preprocess_text2list(tags[0])
-        tag_list_2 = DocumentHandling.preprocess_text2list(tags[1])
-        for tag in tag_list_2:
-            tag_list.append(tag)
-        for tag in tag_list:
-            text.append(tag)
-        text_purified = []
-        for data in text:
-            if data not in text_purified:
-                text_purified.append(data)
-        print(names[i])
-        print(text_purified)
-        # data = wntg.generate_tags(text)
-        # dbutil.insert_tags(names[i], data, "wordnet_gen")
+    tables = ["wordnet_extend_tags_009","wordnet_extend_tags_010","wordnet_extend_tags_011","wordnet_extend_tags_012","wordnet_extend_tags_013","wordnet_extend_tags_014","wordnet_extend_tags_015","wordnet_extend_tags_016"]
+    thres = 0.08
+    for table_name in tables:
+        thres += 0.01
+        WordNetTagGenerator.TagGen_Similarity_Threshold = thres
+        for i in range(len(names)):
+            text = []
+            tags = tag_raw[i]
+            tag_list = DocumentHandling.preprocess_text2list(tags[0])
+            tag_list_2 = DocumentHandling.preprocess_text2list(tags[1])
+            for tag in tag_list_2:
+                tag_list.append(tag)
+            for tag in tag_list:
+                text.append(tag)
+            text_purified = []
+            for data in text:
+                if data not in text_purified:
+                    text_purified.append(data)
+            print(names[i])
+            print(text_purified)
+            dbutil.insert_tags_with_col(names[i], wntg.generate_tags(text_purified), table_name)
 
 
 def generate_mcg_cluster2db():
@@ -69,5 +77,7 @@ def generate_tfidf2db():
     for i in range (len(doc)):
         dbutil.insert_tags(doc[i].name, doc[i].basic_tag, "tfidf")
         #print(doc[i].name, doc[i].basic_tag)
+
+
 
 generate_wordnet_tags2db()

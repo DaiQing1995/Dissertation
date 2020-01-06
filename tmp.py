@@ -12,3 +12,16 @@ def delete_duplicate_data():
         ret.append(d)
         concepts.add(d[0])
     print(ret)
+
+
+def set2str():
+    tmpset = set()
+    tmp = ['wholeness', 'an item of factual information derived from measurement or research', 'integrity', 'reliability',
+     'the quality of being dependable or reliable', 'dependableness', 'datum', 'data_point', 'moral soundness',
+     'dependability', 'unity', 'database', 'an organized body of related information', 'reliableness']
+    for t in tmp:
+        tmpset.add(t)
+    aa = tmpset.aslist()
+    print(aa)
+
+set2str()
