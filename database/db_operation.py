@@ -80,7 +80,7 @@ class dq_DBUtils:
 
         return sdesp
 
-    def check_tagstable_exist(self, name):
+    def check_name_row_exist(self, name):
         cursor = self.db.cursor()
         find_statement = "select * FROM `dockerhub_info`.`container_tags` WHERE NAME = \"{name}\""
         find_statement = find_statement.format(name=name)
@@ -91,13 +91,41 @@ class dq_DBUtils:
             return True
 
 
-    def insert_tags(self, name, tagsraw, type):
+    def insert_tags_with_col(self, name, tagsraw, col_name):
+        """
+        :param name: container name, unique
+        :param tagsraw: list data structure, tags inside
+        :return: nothing
+        """
         # 使用cursor()方法获取操作游标
         tags = ""
         for tag in tagsraw:
             tags += "," + tag
         cursor = self.db.cursor()
-        if not self.check_tagstable_exist(name):
+        if not self.check_name_row_exist(name):
+            statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`{column_name}`) VALUES (\"{name}\", \"{tags}\")"
+            statement = statement.format(name=name,tags=tags, column_name=col_name)
+            cursor.execute(statement)
+            self.db.commit()
+        else:
+            statement = "UPDATE `dockerhub_info`.`container_tags` SET `{column_name}` = \"{tags}\" WHERE `name` = \"{name}\""
+            statement = statement.format(name=name, tags=tags, column_name=col_name)
+            cursor.execute(statement)
+            self.db.commit()
+
+    def insert_tags(self, name, tagsraw, type):
+        """
+        :param name: container name, unique
+        :param tagsraw: list data structure, tags inside
+        :param type: which kind of algorithm generated
+        :return: nothing
+        """
+        # 使用cursor()方法获取操作游标
+        tags = ""
+        for tag in tagsraw:
+            tags += "," + tag
+        cursor = self.db.cursor()
+        if not self.check_name_row_exist(name):
             if type == "tfidf":
                 statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags`) VALUES (\"{name}\", \"{tags}\")"
                 self.db.commit()
@@ -105,12 +133,12 @@ class dq_DBUtils:
                 statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`hierarchical_cluster_tags`) VALUES (\"{name}\", \"{tags}\")"
                 self.db.commit()
             elif type == "wordnet_gen":
-                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`wordnet_extend_tags`) VALUES (\"{name}\", \"{tags}\")"
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`wordnet_extend_tags_003`) VALUES (\"{name}\", \"{tags}\")"
                 self.db.commit()
             else:
                 print("[sql error] no type named %s" % type)
                 return
-            statement = statement.format(name=name,tags=tags)
+            statement = statement.format(name=name, tags=tags)
             cursor.execute(statement)
         else:
             if type == "tfidf":
@@ -120,7 +148,7 @@ class dq_DBUtils:
                 statement = "UPDATE `dockerhub_info`.`container_tags` SET `hierarchical_cluster_tags` = \"{tags}\" WHERE `name` = \"{name}\""
                 self.db.commit()
             elif type == "wordnet_gen":
-                statement = "UPDATE `dockerhub_info`.`container_tags` SET `wordnet_extend_tags` = \"{tags}\" WHERE `name` = \"{name}\""
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `wordnet_extend_tags_003` = \"{tags}\" WHERE `name` = \"{name}\""
                 self.db.commit()
             else:
                 print("[sql error] no type named %s" % type)
@@ -128,7 +156,7 @@ class dq_DBUtils:
             statement = statement.format(name=name, tags=tags)
             cursor.execute(statement)
 
-# dbutil = dq_DBUtils()
+                    # dbutil = dq_DBUtils()
 # data = dbutil.get_name_sdesp()
 # container_name = dbutil.name
 # i = 0

@@ -135,8 +135,6 @@ class WordNetTagGenerator:
                 print("%s: def: %s" % (data._name, wnu.get_definition(data._name)))
                 print("hypernyms:%s" % wnu.get_hypernyms(data._name))
                 print("hyponyms:%s" % wnu.get_hyponyms(data._name))
-                print("antonyms:")
-                print(wnu.get_antonyms(data._name))
                 print("synonyms:")
                 print(wnu.get_synonym(data._name))
                 print("%s and computer similarity: %lf" % ((data._lemmas[0])._name, self.get_similarity((data._lemmas[0])._name, "computer")))
