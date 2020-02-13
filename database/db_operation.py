@@ -35,7 +35,7 @@ class dq_DBUtils:
         return sdesp
 
     """
-    get all containers' name and tf_idf_033 tags
+    get all containers' name, tf_idf_033 tags and hierarchical clustering tags
     """
     def get_name_and_basictags(self):
         # 使用cursor()方法获取操作游标
@@ -57,6 +57,39 @@ class dq_DBUtils:
             tags.append(tag)
 
         return self.name, tags
+
+
+    """
+    get all containers' name and tf_idf_{type} tags
+    """
+    def get_name_basictags_withtag(self, type):
+        # 使用cursor()方法获取操作游标
+        cursor = self.db.cursor()
+
+        # 使用execute方法执行SQL语句
+        if type == "033":
+            cursor.execute("SELECT 	`name`, tf_idf_tags_033, hierarchical_cluster_tags FROM dockerhub_info.container_tags")
+        elif type == "050":
+            cursor.execute("SELECT 	`name`, tf_idf_tags_050, hierarchical_cluster_tags FROM dockerhub_info.container_tags")
+        elif type == "060":
+            cursor.execute("SELECT 	`name`, tf_idf_tags_060, hierarchical_cluster_tags FROM dockerhub_info.container_tags")
+        elif type == "080":
+            cursor.execute("SELECT 	`name`, tf_idf_tags_080, hierarchical_cluster_tags FROM dockerhub_info.container_tags")
+
+        # 使用 fetchone() 方法获取一条数据
+        data = cursor.fetchall()
+
+        tags = []
+
+        for row in data:
+            tag = []
+            self.name.append(row[0])
+            tag.append(row[1])
+            tag.append(row[2])
+            tags.append(tag)
+
+        return self.name, tags
+
 
     def get_N_name_sdesp(self, N):
         """
@@ -113,6 +146,9 @@ class dq_DBUtils:
             cursor.execute(statement)
             self.db.commit()
 
+    """
+    Insert tag to {name} row and specific(type) column 
+    """
     def insert_tags(self, name, tagsraw, type):
         """
         :param name: container name, unique
@@ -150,13 +186,25 @@ class dq_DBUtils:
             elif type == "wordnet_gen":
                 statement = "UPDATE `dockerhub_info`.`container_tags` SET `wordnet_extend_tags_003` = \"{tags}\" WHERE `name` = \"{name}\""
                 self.db.commit()
+            elif type == "mcg_tags_033":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `mcg_tags_033` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "mcg_tags_050":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `mcg_tags_050` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "mcg_tags_060":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `mcg_tags_060` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "mcg_tags_080":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `mcg_tags_080` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
             else:
                 print("[sql error] no type named %s" % type)
                 return
             statement = statement.format(name=name, tags=tags)
             cursor.execute(statement)
 
-                    # dbutil = dq_DBUtils()
+# dbutil = dq_DBUtils()
 # data = dbutil.get_name_sdesp()
 # container_name = dbutil.name
 # i = 0

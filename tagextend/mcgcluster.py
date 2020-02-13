@@ -8,8 +8,6 @@ class of each cluster
 """
 class WordCluster:
 
-    def calculateFDm(self, concepts):
-        return 0.0
 
     def join(self, another_tree):
         Tm = WordCluster(None, None)
@@ -39,6 +37,8 @@ class of cluster algorithm
 """
 class ClusterAlgorithm:
 
+    TIME_SLEEP = 5
+
     # len(words) * (concepts) matrix
     PCE_matrix = None
     PEC_matrix = None
@@ -66,7 +66,7 @@ class ClusterAlgorithm:
         for word in self.words:
             word2concept[word] = set()
             print("current word(%s)'s pce_items request sent" % word)
-            time.sleep(1.2)
+            time.sleep(self.TIME_SLEEP)
             pce_items = mcgutils.getPCEScore(word, ClusterAlgorithm.REQUEST_SUM).items()
             print("current word(%s)'s pce_items got" % word)
             # print(pce_items)
@@ -76,7 +76,7 @@ class ClusterAlgorithm:
                 if item[1] < pce_min:
                     pce_min = item[1]
             print("current word(%s)'s pec_items request sent" % word)
-            time.sleep(1.2)
+            time.sleep(self.TIME_SLEEP)
             pec_items = mcgutils.getPECScore(word, ClusterAlgorithm.REQUEST_SUM).items()
             print("current word(%s)'s pec_items got" % word)
             # print(pec_items)

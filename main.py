@@ -43,11 +43,27 @@ def generate_mcg_cluster2db():
     MCG and BRT based tag generator
     :return:
     """
-    words = ["apple", "amazon"]
-    ca = ClusterAlgorithm(words)
-    output_concepts = ca.clustering()
-    concepts = sorted(output_concepts.items(), key=itemgetter(1), reverse=False)
-    print(concepts)
+    dbutil = dq_DBUtils()
+    names, tags = dbutil.get_name_basictags_withtag("033")
+    words = []
+
+    for i in range(len(names)):
+        words.clear()
+        taglist = DocumentHandling.preprocess_text2list(tags[i][0])
+        for t in taglist:
+            words.append(t)
+        taglist = DocumentHandling.preprocess_text2list(tags[i][1])
+        for t in taglist:
+            words.append(t)
+        print(names[i], tags[i])
+        print(words)
+        ca = ClusterAlgorithm(words)
+        output_concepts = ca.clustering()
+        print(output_concepts)
+        concepts = sorted(output_concepts, key=itemgetter(1), reverse=True)
+        print(concepts)
+        dbutil.insert_tags(names[i], concepts, "mcg_tags_033")
+
 
 def generate_cluster2db():
     """
@@ -80,4 +96,4 @@ def generate_tfidf2db():
 
 
 
-generate_wordnet_tags2db()
+generate_mcg_cluster2db()
