@@ -124,6 +124,22 @@ class dq_DBUtils:
             return True
 
 
+    def check_mcg_exist(self, name, type):
+        """
+        check mcg column data exist
+        :param name: tag table id
+        :param type: col type: {033, 050 060 080}
+        :return:
+        """
+        cursor = self.db.cursor()
+        find_statement = "select mcg_tags_{type} FROM `dockerhub_info`.`container_tags` WHERE NAME = \"{name}\""
+        find_statement = find_statement.format(type=type, name=name)
+        cursor.execute(find_statement)
+        if cursor.rowcount == 0:
+            return False
+        else:
+            return True
+
     def insert_tags_with_col(self, name, tagsraw, col_name):
         """
         :param name: container name, unique
@@ -212,3 +228,5 @@ class dq_DBUtils:
 #     print("%s:" % container_name[i])
 #     print(item)
 #     i += 1
+# dbutil = dq_DBUtils()
+# print(dbutil.check_mcg_exist(".NET Core", "033"))

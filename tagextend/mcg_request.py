@@ -1,24 +1,52 @@
 import requests
 import json
+import time
 
 class MCGUtils:
 
     def getBLCScore(self, element, topK):
-        request = "https://concept.research.microsoft.com/api/Concept/ScoreByCross?instance={instance}&topK={topK}"
-        req = request.format(instance=element, topK=topK)
-        return self.__parse2List(requests.get(req))
+        for i in range(1000):
+            request = "https://concept.research.microsoft.com/api/Concept/ScoreByCross?instance={instance}&topK={topK}"
+            s = requests.session()
+            s.keep_alive = False
+            req = request.format(instance=element, topK=topK)
+            response = requests.get(req)
+            if response.status_code != 200:
+                time.sleep(100 + i * 100)
+                continue
+            else:
+                break
+        return self.__parse2List(response)
 
     #Get Score by P(e|c)
     def getPCEScore(self, element, topK):
-        request = "https://concept.research.microsoft.com/api/Concept/ScoreByTypi?instance={instance}&topK={topK}"
-        req = request.format(instance=element, topK=topK)
-        return self.__parse2List(requests.get(req))
+        for i in range(1000):
+            request = "https://concept.research.microsoft.com/api/Concept/ScoreByTypi?instance={instance}&topK={topK}"
+            s = requests.session()
+            s.keep_alive = False
+            req = request.format(instance=element, topK=topK)
+            response = requests.get(req)
+            if response.status_code != 200:
+                time.sleep(100 + i * 100)
+                continue
+            else:
+                break
+        return self.__parse2List(response)
 
     #Get Score by P(c|e)
     def getPECScore(self, element, topK):
-        request = "https://concept.research.microsoft.com/api/Concept/ScoreByProb?instance={instance}&topK={topK}"
-        req = request.format(instance=element, topK=topK)
-        return self.__parse2List(requests.get(req))
+        for i in range(1000):
+            request = "https://concept.research.microsoft.com/api/Concept/ScoreByProb?instance={instance}&topK={topK}"
+            s = requests.session()
+            s.keep_alive = False
+            req = request.format(instance=element, topK=topK)
+            response = requests.get(req)
+            if response.status_code != 200:
+                time.sleep(100 + i * 100)
+                continue
+            else:
+                break
+        return self.__parse2List(response)
 
 
     """

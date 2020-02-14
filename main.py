@@ -44,10 +44,13 @@ def generate_mcg_cluster2db():
     :return:
     """
     dbutil = dq_DBUtils()
-    names, tags = dbutil.get_name_basictags_withtag("033")
+    type = "033"
+    names, tags = dbutil.get_name_basictags_withtag(type)
     words = []
-
+    output_tag = []
     for i in range(len(names)):
+        if dbutil.check_mcg_exist(names[i], type):
+           continue
         words.clear()
         taglist = DocumentHandling.preprocess_text2list(tags[i][0])
         for t in taglist:
@@ -61,8 +64,18 @@ def generate_mcg_cluster2db():
         output_concepts = ca.clustering()
         print(output_concepts)
         concepts = sorted(output_concepts, key=itemgetter(1), reverse=True)
-        print(concepts)
-        dbutil.insert_tags(names[i], concepts, "mcg_tags_033")
+        output_tag.clear()
+        count = 0
+        for concept in concepts:
+            output_tag.append(concept[0])
+            count += 1
+            if count == 13:
+                break
+        print("insert data:")
+        print(output_tag)
+        if len(output_tag) == 0:
+            continue
+        dbutil.insert_tags(names[i], output_tag, "mcg_tags_033")
 
 
 def generate_cluster2db():
@@ -77,6 +90,7 @@ def generate_cluster2db():
     for tag in tags:
         if tags[tag] != None:
             dbutil.insert_tags(name[tag], tags[tag], "hier_cluster")
+
 
 def generate_tfidf2db():
     """
