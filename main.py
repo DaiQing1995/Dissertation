@@ -50,6 +50,7 @@ def generate_mcg_cluster2db():
     output_tag = []
     for i in range(len(names)):
         if dbutil.check_mcg_exist(names[i], type):
+           print("%s filled" % names[i])
            continue
         words.clear()
         taglist = DocumentHandling.preprocess_text2list(tags[i][0])

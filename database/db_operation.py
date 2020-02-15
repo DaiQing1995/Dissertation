@@ -135,9 +135,11 @@ class dq_DBUtils:
         find_statement = "select mcg_tags_{type} FROM `dockerhub_info`.`container_tags` WHERE NAME = \"{name}\""
         find_statement = find_statement.format(type=type, name=name)
         cursor.execute(find_statement)
-        if cursor.rowcount == 0:
+        data = cursor.fetchone()
+        if len(data) <= 0 or not data[0]:
             return False
         else:
+            print("%s already have tags{%s}" % (name, data))
             return True
 
     def insert_tags_with_col(self, name, tagsraw, col_name):
