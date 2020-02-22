@@ -37,7 +37,7 @@ class of cluster algorithm
 """
 class ClusterAlgorithm:
 
-    TIME_SLEEP = 10
+    TIME_SLEEP = 15
 
     # len(words) * (concepts) matrix
     PCE_matrix = None
@@ -66,7 +66,7 @@ class ClusterAlgorithm:
         for word in self.words:
             word2concept[word] = set()
             print("current word(%s)'s pce_items request sent" % word)
-            time.sleep(self.TIME_SLEEP)
+            time.sleep(self.TIME_SLEEP)# avoid being banned by microsoft
             pce_items = mcgutils.getPCEScore(word, ClusterAlgorithm.REQUEST_SUM).items()
             print("current word(%s)'s pce_items got" % word)
             # print(pce_items)
@@ -226,7 +226,7 @@ class ClusterAlgorithm:
                         maxi = i
                         maxj = j
                         max = l1
-            print("max: %lf" % max)
+            print("max L(Tm) for clustering in current loop: %lf" % max)
             if max < ClusterAlgorithm.P_threshold:
                 return
             Tm = clusters[maxi].join(clusters[maxj])
@@ -238,7 +238,7 @@ class ClusterAlgorithm:
             clusters.remove(rm1)
             clusters.remove(rm2)
             if Tm is not None:
-                print("words:")
+                print("merged cluster's words:")
                 print(self.__getword(Tm))
         return ret_concepts
 
