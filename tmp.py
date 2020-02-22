@@ -1,4 +1,4 @@
-from operator import itemgetter
+import requests
 
 # dict = {"a":1.5434, "b":0.9}
 
@@ -24,4 +24,12 @@ def set2str():
     aa = tmpset.aslist()
     print(aa)
 
-set2str()
+def checkproxy():
+    s = requests.session()
+    url = "https://mail.163.com/"
+    s.keep_alive = False
+    s.proxies = {"http": "220.249.149.140:9999"}
+    r = requests.get(url)
+    print(r.status_code)  # 如果代理可用则正常访问，不可用报以上错误
+
+checkproxy()
