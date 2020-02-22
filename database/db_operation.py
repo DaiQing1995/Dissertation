@@ -179,9 +179,18 @@ class dq_DBUtils:
         for tag in tagsraw:
             tags += "," + tag
         cursor = self.db.cursor()
-        if not self.check_name_row_exist(name):
-            if type == "tfidf":
-                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags`) VALUES (\"{name}\", \"{tags}\")"
+        if not self.check_name_row_exist(name): #check the row exist or not
+            if type == "tf_idf_033":
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags_033`) VALUES (\"{name}\", \"{tags}\")"
+                self.db.commit()
+            elif type == "tf_idf_050":
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags_050`) VALUES (\"{name}\", \"{tags}\")"
+                self.db.commit()
+            elif type == "tf_idf_060":
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags_060`) VALUES (\"{name}\", \"{tags}\")"
+                self.db.commit()
+            elif type == "tf_idf_080":
+                statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`tf_idf_tags_080`) VALUES (\"{name}\", \"{tags}\")"
                 self.db.commit()
             elif type == "hier_cluster":
                 statement = "INSERT INTO `dockerhub_info`.`container_tags`(`name`,`hierarchical_cluster_tags`) VALUES (\"{name}\", \"{tags}\")"
@@ -195,8 +204,17 @@ class dq_DBUtils:
             statement = statement.format(name=name, tags=tags)
             cursor.execute(statement)
         else:
-            if type == "tfidf":
-                statement = "UPDATE `dockerhub_info`.`container_tags` SET `tf_idf_tags` = \"{tags}\" WHERE `name` = \"{name}\""
+            if type == "tf_idf_033":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `tf_idf_tags_033` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "tf_idf_050":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `tf_idf_tags_050` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "tf_idf_060":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `tf_idf_tags_060` = \"{tags}\" WHERE `name` = \"{name}\""
+                self.db.commit()
+            elif type == "tf_idf_080":
+                statement = "UPDATE `dockerhub_info`.`container_tags` SET `tf_idf_tags_080` = \"{tags}\" WHERE `name` = \"{name}\""
                 self.db.commit()
             elif type == "hier_cluster":
                 statement = "UPDATE `dockerhub_info`.`container_tags` SET `hierarchical_cluster_tags` = \"{tags}\" WHERE `name` = \"{name}\""
