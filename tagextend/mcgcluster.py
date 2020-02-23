@@ -37,7 +37,7 @@ class of cluster algorithm
 """
 class ClusterAlgorithm:
 
-    TIME_SLEEP = 15
+    TIME_SLEEP = 3
 
     # len(words) * (concepts) matrix
     PCE_matrix = None

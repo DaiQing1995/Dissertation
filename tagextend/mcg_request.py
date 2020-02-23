@@ -6,7 +6,7 @@ import time
 class MCGUtils:
 
     requests.adapters.DEFAULT_RETRIES = 8
-    proxy = {"http": "112.87.71.148:9999"}
+    proxy = {"http": "112.84.52.181:9999"}
 
     # def getBLCScore(self, element, topK):
     #     for i in range(1000):
