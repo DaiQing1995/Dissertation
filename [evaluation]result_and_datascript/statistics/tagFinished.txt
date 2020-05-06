@@ -1,0 +1,52 @@
+Azure Blob Storage
+Azure Cognitive Services Keyphrase
+azure databricks operator
+Azure Functions Base
+Azureiotedge Modbus
+busybox
+elasticsearch
+erlang
+gcc
+IBM Tivoli Netcool/OMNIbus Probe for Email
+jobber
+kong
+MarkLogic 
+Microsoft Cognitive Toolkit (CNTK)
+Microsoft Cognitive Toolkit (Nightly CNTK build)
+NetScaler CPX Express Rel 11.1
+Oryx node-10.1
+postgres
+Presidio Analyzer
+Presidio OCR
+Reverse Proxy for IoT Industrial
+ruby
+Samples Ml Mssql Image Classifier
+Software AG Natural CE
+ThingsBoard Professional Edition MQTT Transport Microservice
+traefik
+Veritas NetBackup Client 
+Windows Server Core
+.NET Framework SDK
+adoptopenjdk
+Anaconda
+ASP.NET
+ASP.NET Core Runtime
+Auditbeat
+Avi Vantage Platform
+Azure Industrial Blob upload notification router
+Azure IoT Edge Dev Container
+GitLab Enterprise Edition
+influxdb
+Java SE
+K8s Aad Pod Identity Mic
+Kaazing Gateway
+mageia
+mariadb
+nuxeo
+Oracle Database Enterprise Edition
+Oryx node-4.5
+Oryx node-8.12
+percona
+python
+redis
+SAP HANA, express edition (database and application services)

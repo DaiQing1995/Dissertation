@@ -1,0 +1,1535 @@
+Azure Blob Storage
+TF_IDF_033
+blob true
+storage true
+azure true
+TF_IDF_050
+blob true
+storage true
+azure true
+TF_IDF_060
+blob true
+storage true
+azure true
+TF_IDF_080
+blob true
+storage true
+azure true
+HIER
+ag true
+Azure Cognitive Services Keyphrase
+TF_IDF_033
+cognitive true
+phrase true
+services false
+extraction true
+key true
+azure true
+TF_IDF_050
+cognitive true
+phrase true
+services false
+extraction true
+key true
+TF_IDF_060
+cognitive true
+phrase true
+services false
+extraction true
+key true
+TF_IDF_080
+cognitive true
+phrase true
+services false
+extraction true
+key true
+HIER
+mage false
+ci false
+azure databricks operator
+TF_IDF_033
+kubernetes true
+submit true
+jobs true
+databricks true
+operator true
+azure true
+TF_IDF_050
+kubernetes true
+submit true
+jobs true
+databricks true
+operator true
+TF_IDF_060
+kubernetes true
+submit true
+jobs true
+databricks true
+operator true
+TF_IDF_080
+kubernetes true
+submit true
+jobs true
+databricks true
+operator true
+HIER
+pe false
+source false
+open false
+Azure Functions Base
+TF_IDF_033
+functions true
+base true
+azure true
+TF_IDF_050
+functions true
+base true
+azure true
+TF_IDF_060
+functions true
+base true
+azure true
+TF_IDF_080
+functions true
+base true
+azure true
+HIER
+mage false
+ci true
+Azureiotedge Modbus
+TF_IDF_033
+edge true
+modbus true
+devices true
+module true
+reading true
+capable false
+azure true
+iot true
+TF_IDF_050
+edge true
+modbus true
+devices true
+module true
+reading true
+capable false
+iot true
+TF_IDF_060
+edge true
+modbus true
+devices true
+module true
+reading true
+capable false
+TF_IDF_080
+modbus true
+devices true
+reading true
+capable false
+HIER
+module true
+reading true
+busybox
+TF_IDF_033
+busybox true
+base true
+TF_IDF_050
+busybox true
+base true
+TF_IDF_060
+busybox true
+base true
+TF_IDF_080
+busybox true
+base true
+HIER
+mage false
+ci true
+elasticsearch
+TF_IDF_033
+analytics true
+search true
+data true
+elasticsearch true
+powerful true
+explore true
+engine true
+source false
+easy true
+open false
+TF_IDF_050
+analytics true
+search true
+elasticsearch true
+powerful true
+explore true
+engine true
+easy true
+TF_IDF_060
+search true
+elasticsearch true
+powerful true
+explore true
+engine true
+easy true
+TF_IDF_080
+explore true
+HIER
+source false
+open false
+erlang
+TF_IDF_033
+scalable true
+build true
+systems true
+erlang true
+language true
+availability true
+programming true
+massively true
+TF_IDF_050
+scalable true
+build true
+systems true
+erlang true
+language true
+availability true
+programming true
+massively true
+TF_IDF_060
+scalable true
+build true
+systems true
+erlang true
+availability true
+programming true
+massively true
+TF_IDF_080
+systems true
+erlang true
+availability true
+massively true
+HIER
+ui false
+build true
+gcc
+TF_IDF_033
+languages true
+compiling true
+supports false
+collection true
+compiler true
+gnu true
+TF_IDF_050
+languages true
+compiling true
+supports false
+collection true
+compiler true
+gnu true
+TF_IDF_060
+languages true
+compiling true
+supports false
+collection true
+compiler true
+gnu true
+TF_IDF_080
+languages true
+compiling true
+supports false
+collection true
+compiler true
+gnu true
+HIER
+language true
+programming true
+IBM Tivoli Netcool/OMNIbus Probe for Email
+TF_IDF_033
+ibm true
+tivoli true
+netcool/omnibus false
+email true
+probe true
+TF_IDF_050
+ibm true
+tivoli true
+netcool/omnibus false
+email true
+probe true
+TF_IDF_060
+ibm true
+tivoli true
+netcool/omnibus false
+email true
+probe true
+TF_IDF_080
+ibm true
+tivoli true
+netcool/omnibus false
+email true
+probe true
+HIER
+mage false
+ci true
+jobber
+TF_IDF_033
+cron true
+sophisticated true
+statusreporting true
+alternative true
+errorhandling true
+jobber true
+TF_IDF_050
+cron true
+sophisticated true
+statusreporting true
+alternative true
+errorhandling true
+jobber true
+TF_IDF_060
+cron true
+sophisticated true
+statusreporting true
+alternative true
+errorhandling true
+jobber true
+TF_IDF_080
+cron true
+sophisticated true
+statusreporting true
+alternative true
+errorhandling true
+jobber true
+HIER
+native true
+alt false
+kong
+TF_IDF_033
+apis true
+service true
+api true
+gateway true
+mesh true
+cloudnative true
+microservices true
+TF_IDF_050
+apis true
+service true
+api true
+gateway true
+mesh true
+cloudnative true
+microservices true
+TF_IDF_060
+apis true
+service true
+api true
+gateway true
+mesh true
+cloudnative true
+microservices true
+TF_IDF_080
+apis true
+gateway true
+mesh true
+cloudnative true
+microservices true
+HIER
+os true
+ros true
+MarkLogic 
+TF_IDF_033
+generation false
+acid true
+features false
+database true
+security true
+backup true
+enterprise true
+marklogic true
+recovery true
+transactions true
+multimodel true
+TF_IDF_050
+generation false
+acid true
+features false
+security true
+backup true
+marklogic true
+recovery true
+transactions true
+multimodel true
+TF_IDF_060
+generation false
+acid true
+features false
+backup true
+marklogic true
+recovery true
+transactions true
+multimodel true
+TF_IDF_080
+backup true
+marklogic true
+recovery true
+transactions true
+HIER
+database true
+data true
+base true
+Microsoft Cognitive Toolkit (CNTK)
+TF_IDF_033
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+opensource true
+learning true
+free true
+microsoft true
+TF_IDF_050
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+opensource true
+learning true
+free true
+microsoft true
+TF_IDF_060
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+learning true
+microsoft true
+TF_IDF_080
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+HIER
+source false
+open false
+Microsoft Cognitive Toolkit (Nightly CNTK build)
+TF_IDF_033
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+opensource true
+learning true
+free true
+microsoft true
+TF_IDF_050
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+opensource true
+learning true
+free true
+microsoft true
+TF_IDF_060
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+learning true
+microsoft true
+TF_IDF_080
+deep true
+easytouse true
+toolkit true
+commercialgrade true
+HIER
+source true
+open false
+NetScaler CPX Express Rel 11.1
+TF_IDF_033
+aware false
+balancer false
+load false
+microservice true
+fullfeatured true
+free true
+TF_IDF_050
+aware false
+balancer false
+load false
+microservice true
+fullfeatured true
+free true
+TF_IDF_060
+aware false
+balancer false
+load false
+microservice true
+fullfeatured true
+free true
+TF_IDF_080
+aware false
+balancer false
+load false
+microservice true
+fullfeatured true
+HIER
+os true
+ros true
+Oryx node-10.1
+TF_IDF_033
+entry true
+101 true
+built false
+web true
+host true
+nodejs true
+point true
+artifacts false
+TF_IDF_050
+entry true
+101 true
+built false
+host true
+nodejs true
+point true
+artifacts false
+TF_IDF_060
+101 true
+TF_IDF_080
+101 true
+HIER
+entry true
+node true
+point. true
+os true
+ui true
+web true
+host true
+js true
+nodejs true
+artifacts false
+postgres
+TF_IDF_033
+objectrelational true
+database true
+integrity true
+postgresql true
+data true
+reliability true
+TF_IDF_050
+objectrelational true
+database true
+integrity true
+postgresql true
+data true
+reliability true
+TF_IDF_060
+objectrelational true
+database true
+integrity true
+postgresql true
+data true
+reliability true
+TF_IDF_080
+objectrelational true
+integrity true
+postgresql true
+reliability true
+HIER
+database true
+data true
+base true
+Presidio Analyzer
+TF_IDF_033
+analyzer true
+presidio true
+TF_IDF_050
+analyzer true
+presidio true
+TF_IDF_060
+analyzer true
+presidio true
+TF_IDF_080
+analyzer true
+presidio true
+HIER
+Presidio OCR
+TF_IDF_033
+presidio true
+ocr true
+TF_IDF_050
+presidio true
+ocr true
+TF_IDF_060
+presidio true
+ocr true
+TF_IDF_080
+presidio true
+ocr true
+HIER
+Reverse Proxy for IoT Industrial
+TF_IDF_033
+proxy true
+industrial true
+instance true
+nginx true
+requests true
+reverse true
+azure true
+iot true
+TF_IDF_050
+proxy true
+industrial true
+instance true
+nginx true
+requests true
+reverse true
+iot true
+TF_IDF_060
+proxy true
+industrial true
+instance true
+nginx true
+requests true
+reverse true
+TF_IDF_080
+proxy true
+instance true
+nginx true
+requests true
+reverse true
+HIER
+pr false
+ruby
+TF_IDF_033
+reflective true
+opensource true
+language true
+dynamic true
+generalpurpose true
+programming true
+objectoriented true
+ruby true
+TF_IDF_050
+reflective true
+opensource true
+language true
+dynamic true
+generalpurpose true
+programming true
+objectoriented true
+ruby true
+TF_IDF_060
+reflective true
+dynamic true
+generalpurpose true
+programming true
+objectoriented true
+ruby true
+TF_IDF_080
+reflective true
+generalpurpose true
+objectoriented true
+ruby true
+HIER
+language true
+programming true
+Samples Ml Mssql Image Classifier
+TF_IDF_033
+app true
+big true
+cluster true
+data true
+deployed false
+project true
+sample true
+ctp true
+consumes false
+sql true
+21 true
+TF_IDF_050
+app true
+big true
+cluster true
+deployed false
+ctp true
+consumes false
+sql true
+21 true
+TF_IDF_060
+big true
+deployed false
+ctp true
+consumes false
+21 true
+TF_IDF_080
+HIER
+app true
+Software AG Natural CE
+TF_IDF_033
+software false
+natural true
+ag true
+edition false
+community false
+TF_IDF_050
+software false
+natural true
+ag true
+edition false
+community false
+TF_IDF_060
+software false
+natural true
+ag true
+edition false
+community false
+TF_IDF_080
+software false
+natural true
+ag true
+edition false
+community false
+HIER
+mage false
+ci true
+ThingsBoard Professional Edition MQTT Transport Microservice
+TF_IDF_033
+thingsboard true
+based false
+protocol true
+apis true
+pe true
+microservice true
+mqtt true
+transport true
+device true
+gateway true
+TF_IDF_050
+thingsboard true
+based false
+protocol true
+apis true
+pe true
+microservice true
+mqtt true
+transport true
+device true
+gateway true
+TF_IDF_060
+thingsboard true
+protocol true
+apis true
+pe true
+mqtt true
+transport true
+device true
+gateway true
+TF_IDF_080
+mqtt true
+HIER
+os true
+ros true
+traefik
+TF_IDF_033
+cloud true
+edge true
+router true
+native true
+traefik true
+TF_IDF_050
+cloud true
+edge true
+router true
+native true
+traefik true
+TF_IDF_060
+cloud true
+edge true
+router true
+native true
+traefik true
+TF_IDF_080
+cloud true
+edge true
+router true
+native true
+traefik true
+HIER
+Veritas NetBackup Client 
+TF_IDF_033
+leverage true
+existing true
+infrastructure true
+containerized true
+deployed true
+client true
+containers false
+protect true
+netbackup true
+applications true
+TF_IDF_050
+leverage true
+existing true
+infrastructure true
+containerized true
+deployed true
+client true
+protect true
+netbackup true
+TF_IDF_060
+leverage true
+existing true
+infrastructure true
+containerized true
+deployed true
+client true
+protect true
+netbackup true
+TF_IDF_080
+leverage true
+existing true
+netbackup true
+HIER
+app true
+application true
+Windows Server Core
+TF_IDF_033
+server true
+core true
+containers false
+windows true
+base true
+TF_IDF_050
+server true
+core true
+containers false
+windows true
+base true
+TF_IDF_060
+server true
+core true
+containers false
+windows true
+base true
+TF_IDF_080
+core true
+containers false
+windows true
+base true
+HIER
+mage false
+ci true
+.NET Framework SDK
+TF_IDF_033
+framework true
+sdk true
+net true
+TF_IDF_050
+framework true
+sdk true
+net true
+TF_IDF_060
+framework true
+sdk true
+net true
+TF_IDF_080
+framework true
+sdk true
+net true
+HIER
+mage false
+ci true
+adoptopenjdk
+TF_IDF_033
+openjdk true
+built false
+hotspot true
+openj9 true
+adoptopenjdk true
+binaries true
+eclipse true
+TF_IDF_050
+openjdk true
+built false
+hotspot true
+openj9 true
+adoptopenjdk true
+binaries true
+eclipse true
+TF_IDF_060
+openjdk true
+hotspot true
+openj9 true
+adoptopenjdk true
+binaries true
+eclipse true
+TF_IDF_080
+openjdk true
+hotspot true
+openj9 true
+adoptopenjdk true
+binaries true
+eclipse true
+HIER
+mage false
+ci true
+Anaconda
+TF_IDF_033
+python true
+data true
+powered false
+leading true
+anaconda true
+science true
+open true
+platform true
+TF_IDF_050
+python true
+powered false
+leading true
+anaconda true
+science true
+TF_IDF_060
+python true
+powered false
+leading true
+anaconda true
+science true
+TF_IDF_080
+powered false
+leading true
+anaconda true
+science true
+HIER
+data true
+ASP.NET
+TF_IDF_033
+aspnet true
+TF_IDF_050
+aspnet true
+TF_IDF_060
+aspnet true
+TF_IDF_080
+aspnet true
+HIER
+mage false
+ci false
+ASP.NET Core Runtime
+TF_IDF_033
+aspnet true
+core true
+runtime true
+TF_IDF_050
+aspnet true
+core true
+runtime true
+TF_IDF_060
+aspnet true
+core true
+runtime true
+TF_IDF_080
+aspnet true
+core true
+runtime true
+HIER
+mage false
+ci false
+Auditbeat
+TF_IDF_033
+shipper true
+data true
+audit true
+lightweight true
+TF_IDF_050
+shipper true
+data true
+audit true
+lightweight true
+TF_IDF_060
+shipper true
+data true
+audit true
+lightweight true
+TF_IDF_080
+shipper true
+data true
+audit true
+lightweight true
+HIER
+shipper true
+ip false
+ship true
+Avi Vantage Platform
+TF_IDF_033
+app true
+application true
+insights true
+service true
+discovery true
+microsegmentation true
+services true
+softwaredefined true
+autoscaling true
+loadbalancing true
+TF_IDF_050
+app true
+insights true
+service true
+discovery true
+microsegmentation true
+services true
+softwaredefined true
+autoscaling true
+loadbalancing true
+TF_IDF_060
+app true
+insights true
+discovery true
+microsegmentation true
+softwaredefined true
+autoscaling true
+loadbalancing true
+TF_IDF_080
+insights true
+microsegmentation true
+softwaredefined true
+autoscaling true
+loadbalancing true
+HIER
+os false
+ros true
+Azure Industrial Blob upload notification router
+TF_IDF_033
+notification true
+router true
+industrial true
+contains true
+blob true
+upload true
+azure true
+TF_IDF_050
+notification true
+router true
+industrial true
+contains true
+blob true
+upload true
+TF_IDF_060
+notification true
+router true
+industrial true
+contains true
+blob true
+upload true
+TF_IDF_080
+notification true
+router true
+blob true
+upload true
+HIER
+ai false
+Azure IoT Edge Dev Container
+TF_IDF_033
+edge true
+development false
+dev true
+started false
+azure true
+iot true
+TF_IDF_050
+edge true
+development false
+dev true
+started false
+iot true
+TF_IDF_060
+edge true
+development false
+dev true
+started false
+iot true
+TF_IDF_080
+edge true
+development false
+dev true
+started false
+iot true
+HIER
+ai true
+GitLab Enterprise Edition
+TF_IDF_033
+cd true
+code true
+unifies true
+ui true
+review true
+ci true
+gitlab true
+issues true
+TF_IDF_050
+cd true
+code true
+unifies true
+ui true
+review true
+ci true
+gitlab true
+issues true
+TF_IDF_060
+cd true
+code true
+unifies true
+ui true
+review true
+ci true
+gitlab true
+issues true
+TF_IDF_080
+cd true
+code true
+unifies true
+ui true
+review true
+ci true
+gitlab true
+issues true
+HIER
+code true
+issue true
+review true
+influxdb
+TF_IDF_033
+database true
+timeseries true
+built false
+query true
+loads true
+handle true
+ground true
+source true
+influxdb true
+write true
+TF_IDF_050
+timeseries true
+query true
+loads true
+handle true
+ground true
+influxdb true
+write true
+TF_IDF_060
+timeseries true
+query true
+loads true
+handle true
+ground true
+influxdb true
+write true
+TF_IDF_080
+timeseries true
+query true
+loads true
+ground true
+write true
+HIER
+source true
+open true
+Java SE
+TF_IDF_033
+product false
+openjdk true
+enterprise true
+builds true
+microsoft true
+family true
+azul true
+azure true
+TF_IDF_050
+product false
+openjdk true
+enterprise true
+builds true
+microsoft true
+family true
+azul true
+TF_IDF_060
+product false
+openjdk true
+enterprise true
+builds true
+microsoft true
+family true
+azul true
+TF_IDF_080
+product false
+family true
+azul true
+HIER
+os false
+ros false
+K8s Aad Pod Identity Mic
+TF_IDF_033
+controllermic true
+kubernetes true
+identities true
+aad true
+managed false
+identity true
+applications true
+assign true
+TF_IDF_050
+controllermic true
+kubernetes true
+identities true
+aad true
+managed false
+identity true
+applications true
+assign true
+TF_IDF_060
+controllermic true
+kubernetes true
+identities true
+aad true
+managed false
+identity true
+assign true
+TF_IDF_080
+controllermic true
+identities true
+aad true
+managed false
+identity true
+assign true
+HIER
+app false
+application true
+Kaazing Gateway
+TF_IDF_033
+kaazing true
+build false
+gateway true
+TF_IDF_050
+kaazing true
+build false
+gateway true
+TF_IDF_060
+kaazing true
+build false
+gateway true
+TF_IDF_080
+kaazing true
+build false
+gateway true
+HIER
+ui false
+build false
+mageia
+TF_IDF_033
+mageia true
+base true
+TF_IDF_050
+mageia true
+base true
+TF_IDF_060
+mageia true
+base true
+TF_IDF_080
+mageia true
+base true
+HIER
+mage false
+ci true
+mariadb
+TF_IDF_033
+mariadb true
+fork true
+gpl true
+intended false
+remain false
+mysql true
+communitydeveloped true
+free true
+gnu true
+TF_IDF_050
+mariadb true
+fork true
+gpl true
+intended false
+remain false
+mysql true
+communitydeveloped true
+free true
+gnu true
+TF_IDF_060
+mariadb true
+fork true
+gpl true
+intended false
+remain false
+mysql true
+communitydeveloped true
+gnu true
+TF_IDF_080
+mariadb true
+fork true
+gpl true
+intended false
+remain false
+mysql true
+communitydeveloped true
+gnu true
+HIER
+ai false
+nuxeo
+TF_IDF_033
+management true
+customizable true
+source true
+completely false
+open true
+nuxeo true
+content true
+platform true
+TF_IDF_050
+management true
+customizable true
+completely false
+nuxeo true
+content true
+TF_IDF_060
+management true
+customizable true
+completely false
+nuxeo true
+content true
+TF_IDF_080
+customizable true
+completely false
+nuxeo true
+HIER
+source true
+open true
+Oracle Database Enterprise Edition
+TF_IDF_033
+database true
+12c true
+oracle true
+enterprise true
+edition true
+TF_IDF_050
+database true
+12c true
+oracle true
+enterprise true
+edition true
+TF_IDF_060
+database true
+12c true
+oracle true
+enterprise true
+edition true
+TF_IDF_080
+database true
+12c true
+oracle true
+enterprise true
+edition true
+HIER
+database true
+data true
+base true
+Oryx node-4.5
+TF_IDF_033
+entry true
+45 true
+built false
+web true
+host true
+nodejs true
+point true
+artifacts false
+TF_IDF_050
+entry true
+45 true
+built false
+host true
+nodejs true
+point true
+artifacts false
+TF_IDF_060
+45 true
+TF_IDF_080
+45 true
+HIER
+entry true
+node true
+point. true
+os false
+ui true
+web true
+host true
+js true
+nodejs true
+artifacts false
+Oryx node-8.12
+TF_IDF_033
+entry true
+built false
+web true
+host true
+812 true
+nodejs true
+point true
+artifacts false
+TF_IDF_050
+entry true
+built false
+host true
+812 true
+nodejs true
+point true
+artifacts false
+TF_IDF_060
+812 true
+TF_IDF_080
+812 true
+HIER
+entry true
+node true
+point. true
+os false
+ui true
+web true
+host true
+js true
+nodejs true
+artifacts false
+percona
+TF_IDF_033
+server true
+database true
+fork true
+percona true
+management true
+created false
+mysql true
+relational true
+TF_IDF_050
+database true
+fork true
+percona true
+management true
+created false
+mysql true
+relational true
+TF_IDF_060
+fork true
+percona true
+management true
+created false
+mysql true
+relational true
+TF_IDF_080
+fork true
+percona true
+created false
+mysql true
+relational true
+HIER
+database true
+data true
+base true
+python
+TF_IDF_033
+python true
+opensource true
+interactive true
+language true
+interpreted true
+programming true
+objectoriented true
+TF_IDF_050
+python true
+opensource true
+interactive true
+language true
+interpreted true
+programming true
+objectoriented true
+TF_IDF_060
+python true
+opensource true
+interactive true
+language true
+interpreted true
+programming true
+objectoriented true
+TF_IDF_080
+python true
+interactive true
+interpreted true
+objectoriented true
+HIER
+language true
+programming true
+redis
+TF_IDF_033
+server true
+data true
+functions true
+keyvalue true
+source true
+store true
+open true
+redis true
+structure true
+TF_IDF_050
+functions true
+keyvalue true
+store true
+redis true
+structure true
+TF_IDF_060
+functions true
+keyvalue true
+store true
+redis true
+structure true
+TF_IDF_080
+keyvalue true
+store true
+redis true
+structure true
+HIER
+source true
+open true
+SAP HANA, express edition (database and application services)
+TF_IDF_033
+digital true
+business true
+transformation true
+inmemory true
+platform true
+TF_IDF_050
+digital true
+business true
+transformation true
+inmemory true
+platform true
+TF_IDF_060
+digital true
+business true
+transformation true
+inmemory true
+platform true
+TF_IDF_080
+digital true
+business true
+transformation true
+inmemory true
+HIER
