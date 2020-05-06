@@ -1,0 +1,10 @@
+topic1:["database", "data", "system", "host", "mysql", "instance", "options", "server", "access", "postgres"]
+topic2:["php", "extensions", "management", "nodejs", "popular", "
+			plugins", "extension", "content", "javascript", "software]
+topic3:["alpine", "linux", "software", "popular", "note", "slimmer", "bash", "common", "recommended", "main]
+topic4:["language", "windows", "consul", "programming", "server", "code", "memory", "system", "python", "vault]
+topic5:["api", "data", "platform", "deprecated", "open-source", "framework", "built", "swarm", "architecture", "generated]
+topic6:["linux", "amazon", "oracle", "software", "system", "support", "gnu", "updates", "stable", "security]
+topic7:["java", "apache", "server", "web", "application", "openjdk", "development", "tomee", "services", "zend]
+topic8:["mongodb", "permissions", "admin", "http", "authentication", "	required", "control", "application", "configured", "specific]
+topic9:["server", "couchbase", "performance", "single", "data", "query", "production", "host", "servers", "web]
